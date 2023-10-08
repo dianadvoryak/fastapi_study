@@ -3,7 +3,7 @@ from fastapi_users.db import SQLAlchemyBaseUserTable
 from sqlalchemy import Boolean, ForeignKey, Integer, String, TIMESTAMP
 from sqlalchemy import MetaData, Table, Column, JSON
 from sqlalchemy.orm import Mapped, mapped_column
-from database import Base
+from src.database import Base
 
 metadata = MetaData()
 
