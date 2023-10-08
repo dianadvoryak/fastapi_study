@@ -14,6 +14,7 @@ app = FastAPI(
 fastapi_users = FastAPIUsers[User, int](
     get_user_manager,
     [auth_backend],
+
 )
 
 app.include_router(
