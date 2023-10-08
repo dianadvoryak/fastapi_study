@@ -1,18 +1,7 @@
-from datetime import datetime
-from enum import Enum
-from typing import List, Optional
+from fastapi import FastAPI, Depends
 
-from fastapi import FastAPI, Request, Depends
-from fastapi.encoders import jsonable_encoder
-from fastapi.exceptions import ResponseValidationError
-from pydantic import BaseModel, Field
-from starlette import status
-from starlette.responses import JSONResponse
-
-from fastapi_users import fastapi_users
-
-from auth.auth import auth_backend
-from auth.database import User
+from auth.base_config import auth_backend
+from auth.models import User
 from auth.manager import get_user_manager
 from auth.schemas import UserRead, UserCreate
 from fastapi_users import FastAPIUsers
