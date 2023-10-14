@@ -1,17 +1,23 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import select, insert
-from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
+import time
 
 from database import get_async_session
+from fastapi import APIRouter, Depends, HTTPException
+from fastapi_cache.decorator import cache
 from operations.models import operation
 from operations.schemas import OperationCreate
+from sqlalchemy import select, insert
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(
     prefix="/operations",
     tags=["Operation"]
 )
 
+@router.get("/long_operation")
+@cache(expire=30)
+def get_long_op():
+    time.sleep(2)
+    return "Много данных, которые вычисляются очень долго..."
 
 @router.get("/")
 async def get_specific_operations(operation_type: str, session: AsyncSession = Depends(get_async_session)):
