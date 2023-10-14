@@ -30,6 +30,7 @@ user = Table(
 )
 
 class User(SQLAlchemyBaseUserTable[int], Base):
+    __tablename__ = "user"
     id: Mapped[int] = mapped_column(Integer, unique=True, index=True, nullable=False, primary_key=True)
     email: Mapped[str] = mapped_column(String(length=320), unique=True, nullable=False)
     username: Mapped[str] = mapped_column(String(length=320), nullable=False)
