@@ -1,12 +1,9 @@
-from typing import List
-
-from fastapi import APIRouter, Depends
-from sqlalchemy import select, insert
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from database import get_async_session
+from fastapi import APIRouter, Depends, HTTPException
 from operations.models import operation
 from operations.schemas import OperationCreate
+from sqlalchemy import select, insert
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(
     prefix="/operations",
@@ -14,11 +11,22 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[OperationCreate])
+@router.get("")
 async def get_specific_operations(operation_type: str, session: AsyncSession = Depends(get_async_session)):
-    query = select(operation).where(operation.c.type == operation_type)
-    result = await session.execute(query)
-    return result.all()
+    try:
+        query = select(operation).where(operation.c.type == operation_type)
+        result = await session.execute(query)
+        return {
+            "status": "success",
+            "data": result.mappings().all(),
+            "details": None
+        }
+    except Exception:
+        raise HTTPException(status_code=500, detail={
+            "status": "error",
+            "data": None,
+            "details": None
+        })
 
 
 @router.post("/")
