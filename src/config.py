@@ -10,3 +10,9 @@ DB_USER = os.environ.get("DB_USER")
 DB_PASS = os.environ.get("DB_PASS")
 
 SECRET_AUTH = os.environ.get("SECRET_AUTH")
+
+SMTP_HOST = os.environ.get("EMAIL_HOST")
+SMTP_USER = os.environ.get("EMAIL_HOST_USER")
+SMTP_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+SMTP_PORT = os.environ.get("EMAIL_PORT")
+

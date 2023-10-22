@@ -5,3 +5,5 @@ python-dotenv
 sqlalchemy
 fastapi-cache2[redis]
 asyncpg
+celery
+flower
