@@ -7,3 +7,6 @@ fastapi-cache2[redis]
 asyncpg
 celery
 flower
+pytest
+pytest-asyncio
+httpx
