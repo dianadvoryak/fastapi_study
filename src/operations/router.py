@@ -47,4 +47,4 @@ async def add_specific_operations(new_operation: OperationCreate, session: Async
 @router.get("/main")
 async def main(session: AsyncSession = Depends(get_async_session)):
     result = await session.execute(select(1))
-    return result.all()
+    return result.mappings().all()

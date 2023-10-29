@@ -10,3 +10,4 @@ flower
 pytest
 pytest-asyncio
 httpx
+Jinja2
