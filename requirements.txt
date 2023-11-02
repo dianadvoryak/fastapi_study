@@ -12,3 +12,5 @@ pytest-asyncio
 httpx
 Jinja2
 websockets
+aiohttp
+asyncio
